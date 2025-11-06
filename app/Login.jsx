@@ -1,15 +1,50 @@
 import React from "react";
-import { View, ImageBackground, Dimensions, ScrollView, Text, TextInput,TouchableOpacity, StyleSheet } from "react-native";
+import { View, ImageBackground, Dimensions, ScrollView, Text, TextInput,TouchableOpacity, StyleSheet, Alert } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
+import { useState, useEffect } from "react";
+import {auth }from "./firebase";
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import Home from "./Home"
+import StackNavigator from "./StackNavigator";
 
 
 export default function Login(){
     const {width,height} = Dimensions.get('screen')
+     const [passwordVisible, setPasswordVisible]= useState(false)
+        const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
      const localImage = require('../assets/Image/auth-img.png')
      const COLORS = { primary: "rgba(232, 188, 93, 1)", secondary:"rgba(240, 205, 122, 1)" };
+
+     
+      const navigation = useNavigation()
+  useEffect(()=> {
+   const unsubscribe = auth.onAuthStateChanged(user =>{
+      if(user){
+        navigation.replace("StackNavigator")
+      }
+    })
+    return unsubscribe
+  },[])
+
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user
+        console.log('logged in with', user.email)
+      })
+      .catch((error) => {
+        Alert.alert("Login Error", "Invalid Credentials")
+        console.error(error)
+      })
+  }
+
+
     return (
            <ScrollView  showsVerticalScrollIndicator={false}
      style={{backgroundColor:"white", paddingBottom:20}}>
@@ -28,20 +63,27 @@ export default function Login(){
                         <View>
                             <Feather  style={{marginStart:width*.05,margin:15}}  name="mail" size={20} color="black" />
                         </View>
-                        <TextInput style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
+                        <TextInput  onChangeText={text => setEmail(text)} value={email} style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
                         </TextInput>        
                     </View>
 
                     {/* Password */}
                    <View style={{flexDirection:"row", borderBottomWidth:1,borderBlockColor:"black", marginHorizontal:width*.06, marginBottom:height*.03}}>
-                        <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor={"grey"} >
+                        <TextInput secureTextEntry={!passwordVisible} style={styles.textInput} placeholder="Password" placeholderTextColor={"grey"} value={password} onChangeText={text => setPassword(text)}>
                         </TextInput>    
-                        <AntDesign style={{margin:15}} name="lock" size={24} color="black" />    
+
+                        <TouchableOpacity style={{margin:15}} onPress={() => {
+                            setPasswordVisible(!passwordVisible)
+                        }}>
+                            <Text>
+                        {passwordVisible ? <AntDesign  name="unlock" size={24} color="black" /> : <AntDesign name="lock" size={24} color="black" />}
+                        </Text>
+                        </TouchableOpacity>   
                     </View>
 
-                    {/* Register Button */}
-                    <TouchableOpacity style={{backgroundColor:COLORS.primary, height:50,marginHorizontal:25,borderRadius:50}}>
-                        <Text style={{textAlign:"center", fontSize:18, marginTop:height*.015}}>Register</Text>
+                    {/* Login Button */}
+                    <TouchableOpacity onPress={handleLogin} style={{backgroundColor:COLORS.primary, height:50,marginHorizontal:25,borderRadius:50}}>
+                        <Text style={{textAlign:"center", fontSize:18, marginTop:height*.015}}>Login</Text>
                     </TouchableOpacity>
 
 
@@ -65,7 +107,7 @@ export default function Login(){
 
                     <View style={{flexDirection:"row", alignSelf:"center", marginTop:height*.06}}>
                         <Text style={{color:"grey", marginRight:5}}>New user?</Text>
-                        <TouchableOpacity onPress={()=>router.back('./Register')}>
+                        <TouchableOpacity onPress={()=>router.push('./Register')}>
                         <Text>Register Now</Text>
                         </TouchableOpacity>
                     </View>

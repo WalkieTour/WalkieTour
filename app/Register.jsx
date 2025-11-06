@@ -1,14 +1,34 @@
 import React from "react";
-import { View, ImageBackground, Dimensions, ScrollView, Text, TextInput,TouchableOpacity, StyleSheet } from "react-native";
+import { View, ImageBackground, Dimensions, ScrollView, Text, TextInput,TouchableOpacity, StyleSheet,Alert } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { router } from "expo-router";
+import { useState, useEffect } from "react";
+import {auth} from "./firebase";
+  import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Register(){
  const localImage = require('../assets/Image/auth-img.png')
  const {width,height} = Dimensions.get('screen')
+     const [passwordVisible, setPasswordVisible]= useState(false)
  const COLORS = { primary: "rgba(232, 188, 93, 1)", secondary:"rgba(240, 205, 122, 1)" };
+
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  const handleRegister = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log('User created:', user.email);
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  
     return(
         <ScrollView  showsVerticalScrollIndicator={false}
      style={{backgroundColor:"white", paddingBottom:20}}>
@@ -36,19 +56,25 @@ export default function Register(){
                         <View>
                             <Feather  style={{marginStart:width*.05,margin:15}}  name="mail" size={20} color="black" />
                         </View>
-                        <TextInput style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
+                        <TextInput  onChangeText={text => setEmail(text)} value={email} style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
                         </TextInput>        
                     </View>
 
                     {/* Password */}
                    <View style={{flexDirection:"row", borderBottomWidth:1,borderBlockColor:"black", marginHorizontal:width*.06, marginBottom:height*.03}}>
-                        <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor={"grey"} >
+                        <TextInput value={password} onChangeText={text => setPassword(text)} secureTextEntry={passwordVisible} style={styles.textInput} placeholder="Password" placeholderTextColor={"grey"} >
                         </TextInput>    
-                        <AntDesign style={{margin:15}} name="lock" size={24} color="black" />    
+                        <TouchableOpacity style={{margin:15}}  onPress={() =>{
+                            setPasswordVisible(!passwordVisible)
+                        }}>
+                            <Text>
+                                 {passwordVisible ? <AntDesign  name="lock" size={24} color="black" /> : <AntDesign name="unlock" size={24} color="black" />}
+                            </Text>
+                        </TouchableOpacity> 
                     </View>
 
                     {/* Register Button */}
-                    <TouchableOpacity style={{backgroundColor:COLORS.primary, height:50,marginHorizontal:25,borderRadius:50}}>
+                    <TouchableOpacity onPress={handleRegister} style={{backgroundColor:COLORS.primary, height:50,marginHorizontal:25,borderRadius:50}}>
                         <Text style={{textAlign:"center", fontSize:18, marginTop:height*.015}}>Register</Text>
                     </TouchableOpacity>
 
@@ -73,7 +99,7 @@ export default function Register(){
 
                     <View style={{flexDirection:"row", alignSelf:"center", marginTop:height*.06}}>
                         <Text style={{color:"grey", marginRight:5}}>Account have an account?</Text>
-                        <TouchableOpacity onPress={()=>router.navigate('./Login')}>
+                        <TouchableOpacity onPress={()=>router.back('./Login')}>
                         <Text>Login</Text>
                         </TouchableOpacity>
                     </View>

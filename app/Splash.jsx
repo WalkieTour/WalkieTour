@@ -4,7 +4,7 @@ import { router } from "expo-router"
 
 export default function Splash (){
     setTimeout( () =>{
-        router.navigate('./Register')
+        router.navigate('./Onboarding')
      }, 3000)
 
     const {width,height} = Dimensions.get("screen")
