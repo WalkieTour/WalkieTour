@@ -271,19 +271,312 @@ const searchTouristCenters = (searchTerm) => {
   );
 };
 
-// Export for use in other modules
-export {
-  lagosTouristCenters,
-  getTouristCentersByCategory,
-  getTouristCenterById,
-  getBeaches,
-  getNatureParks,
-  getTopRatedCenters,
-  searchTouristCenters
-};
 
 // Example usage:
 console.log("All Tourist Centers:", lagosTouristCenters);
 console.log("All Beaches:", getBeaches());
 console.log("Top Rated Centers:", getTopRatedCenters());
 console.log("Search 'beach':", searchTouristCenters("beach"));
+
+
+
+
+
+
+
+
+
+const unpopularLagosTouristCenters = [
+  {
+    id: 11,
+    name: "Badagry Heritage Museum",
+    location: "Mobee Royal Family Slave Relics Museum, Badagry, Lagos",
+    coordinates: { lat: 6.4151, lng: 2.8771 },
+    entryFee: {
+      adults: "₦1,000",
+      students: "₦500",
+      guidedTour: "₦2,000"
+    },
+    openingHours: "9:00 AM - 5:00 PM (Monday - Saturday)",
+    description: "A historic site documenting the Trans-Atlantic slave trade. Features artifacts, chains, and the 'Point of No Return' where enslaved Africans departed for the Americas.",
+    category: "History & Culture",
+    activities: ["Museum tours", "Historical education", "Photography", "Cultural learning"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1513415756379-454ea5deaa31?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop"
+    },
+    rating: 4.3,
+    highlights: ["First storey building in Nigeria", "Slave relics", "Historical artifacts", "Point of No Return beach"],
+    bestTimeToVisit: "Dry season (November - March)",
+    travelTime: "1.5 - 2 hours from Lagos Island"
+  },
+  {
+    id: 12,
+    name: "Ikoyi Cemetery",
+    location: "Ikoyi, Lagos",
+    coordinates: { lat: 6.4475, lng: 3.4331 },
+    entryFee: {
+      general: "Free"
+    },
+    openingHours: "8:00 AM - 5:00 PM (Daily)",
+    description: "A peaceful colonial-era cemetery featuring unique architecture and historical gravesites. Popular spot for photographers and history enthusiasts.",
+    category: "History & Culture",
+    activities: ["Photography", "Historical exploration", "Architecture viewing", "Quiet reflection"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop"
+    },
+    rating: 3.9,
+    highlights: ["Colonial architecture", "Historic gravesites", "Unique photo location", "Serene atmosphere"],
+    bestTimeToVisit: "Early morning or late afternoon",
+    notes: "Respectful behavior required"
+  },
+  {
+    id: 13,
+    name: "Atican Beach Resort",
+    location: "Plot 242 Okun-Ajah Road, Lekki-Ajah, Lagos",
+    coordinates: { lat: 6.4612, lng: 3.6845 },
+    entryFee: {
+      adults: "₦1,500 - ₦2,000",
+      children: "₦1,000",
+      cabanaRental: "₦30,000 - ₦50,000/day"
+    },
+    openingHours: "9:00 AM - 9:00 PM (Daily)",
+    description: "A hidden beach resort offering tranquility away from the crowds. Features chalets, swimming pool, and beachfront dining.",
+    category: "Beach & Recreation",
+    activities: ["Swimming", "Beach volleyball", "Jet skiing", "Picnicking", "Dining"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1540202404-1b927e27fa8b?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1566024164372-0281f1133aa6?w=800&h=600&fit=crop"
+    },
+    rating: 4.0,
+    highlights: ["Less crowded", "Private cabanas", "Restaurant on-site", "Clean facilities"],
+    accommodation: "Chalets available for rent",
+    bestTimeToVisit: "Weekdays for peaceful experience"
+  },
+  {
+    id: 14,
+    name: "Kalakuta Republic Museum",
+    location: "7 Gbemisola Street, Allen Avenue, Ikeja, Lagos",
+    coordinates: { lat: 6.6018, lng: 3.3515 },
+    entryFee: {
+      adults: "₦1,000",
+      students: "₦500",
+      guidedTour: "₦1,500"
+    },
+    openingHours: "10:00 AM - 6:00 PM (Tuesday - Sunday)",
+    description: "Former home of Afrobeat legend Fela Kuti, now a museum showcasing his life, music, and activism. Features his personal belongings and instruments.",
+    category: "Art & Culture",
+    activities: ["Museum tours", "Music history", "Photography", "Cultural education"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
+    },
+    rating: 4.5,
+    highlights: ["Fela's personal items", "Musical instruments", "Afrobeat history", "Underground shrine"],
+    bestTimeToVisit: "Year-round, check for special events",
+    notes: "Closed on Mondays"
+  },
+  {
+    id: 15,
+    name: "Epe Resort and Spa",
+    location: "Epe, Lagos State",
+    coordinates: { lat: 6.5833, lng: 3.9833 },
+    entryFee: {
+      dayUse: "₦3,000 - ₦5,000",
+      poolAccess: "₦2,000",
+      spaServices: "Varies"
+    },
+    openingHours: "9:00 AM - 8:00 PM (Daily)",
+    description: "A peaceful lakeside resort offering spa services, fishing, and boat rides. Perfect for weekend getaways from the city hustle.",
+    category: "Nature & Recreation",
+    activities: ["Fishing", "Boat rides", "Swimming", "Spa treatments", "Picnicking"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=600&fit=crop"
+    },
+    rating: 4.1,
+    highlights: ["Lakeside views", "Fresh fish market", "Peaceful environment", "Spa facilities"],
+    accommodation: "Hotel rooms available",
+    bestTimeToVisit: "Year-round",
+    travelTime: "1.5 hours from Lagos Island"
+  },
+  {
+    id: 16,
+    name: "Shoprite Sangotedo Beach",
+    location: "Ajah-Epe Expressway, Sangotedo, Lagos",
+    coordinates: { lat: 6.4656, lng: 3.6912 },
+    entryFee: {
+      general: "₦500 - ₦1,000",
+      parking: "₦200"
+    },
+    openingHours: "24 hours (Daily)",
+    description: "A quiet, less commercialized beach perfect for those seeking solitude. Close to Shoprite Sangotedo for convenience.",
+    category: "Beach",
+    activities: ["Swimming", "Beach walks", "Photography", "Picnicking"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop"
+    },
+    rating: 3.8,
+    highlights: ["Less crowded", "Natural setting", "Affordable", "Close to shopping"],
+    bestTimeToVisit: "Weekdays",
+    notes: "Fewer amenities than popular beaches"
+  },
+  {
+    id: 17,
+    name: "Ikeja City Mall Park",
+    location: "Obafemi Awolowo Way, Ikeja, Lagos",
+    coordinates: { lat: 6.6208, lng: 3.3417 },
+    entryFee: {
+      general: "Free"
+    },
+    openingHours: "10:00 AM - 10:00 PM (Daily)",
+    description: "An urban park within a shopping complex offering green space, playground, and outdoor seating. Perfect for quick relaxation.",
+    category: "Park & Recreation",
+    activities: ["Walking", "Picnicking", "Children's playground", "Shopping", "Dining"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=600&fit=crop"
+    },
+    rating: 3.9,
+    highlights: ["Central location", "Free entry", "Shopping access", "Family-friendly"],
+    bestTimeToVisit: "Evenings and weekends",
+    notes: "Can get crowded on weekends"
+  },
+  {
+    id: 18,
+    name: "Terra Kulture",
+    location: "1376 Tiamiyu Savage Street, Victoria Island, Lagos",
+    coordinates: { lat: 6.4367, lng: 3.4205 },
+    entryFee: {
+      events: "Varies by event",
+      restaurant: "No entry fee"
+    },
+    openingHours: "10:00 AM - 10:00 PM (Daily)",
+    description: "A cultural center promoting Nigerian art, theater, and cuisine. Features an art gallery, bookshop, restaurant, and theater space.",
+    category: "Art & Culture",
+    activities: ["Theater performances", "Art exhibitions", "Book shopping", "Nigerian dining", "Cultural events"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&h=600&fit=crop"
+    },
+    rating: 4.4,
+    highlights: ["Nigerian cuisine", "Art gallery", "Bookshop", "Theater productions", "Cultural hub"],
+    bestTimeToVisit: "Check event calendar",
+    notes: "Theater requires booking"
+  },
+  {
+    id: 19,
+    name: "Monkey Park Lekki",
+    location: "Road 14, Ikate, Lekki Phase 1, Lagos",
+    coordinates: { lat: 6.4477, lng: 3.4747 },
+    entryFee: {
+      adults: "₦500",
+      children: "₦300"
+    },
+    openingHours: "9:00 AM - 5:00 PM (Daily)",
+    description: "A small wildlife park where visitors can interact with friendly monkeys in a semi-natural habitat. Great for children.",
+    category: "Nature & Wildlife",
+    activities: ["Monkey feeding", "Photography", "Nature walks", "Wildlife observation"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1516934024742-b461fba47600?w=800&h=600&fit=crop"
+    },
+    rating: 3.7,
+    highlights: ["Interactive experience", "Family-friendly", "Affordable", "Educational"],
+    bestTimeToVisit: "Morning hours",
+    notes: "Follow safety guidelines, monkeys can be unpredictable"
+  },
+  {
+    id: 20,
+    name: "Inagbe Grand Resorts & Leisure",
+    location: "Inagbe Town, Ibeju-Lekki, Lagos",
+    coordinates: { lat: 6.4789, lng: 3.7856 },
+    entryFee: {
+      dayUse: "₦2,000 - ₦3,000",
+      paintball: "₦5,000",
+      zipLine: "₦3,000"
+    },
+    openingHours: "9:00 AM - 7:00 PM (Daily)",
+    description: "An adventure resort on an island accessible by boat, offering zip-lining, paintball, ATV rides, and water sports.",
+    category: "Beach & Recreation",
+    activities: ["Zip-lining", "Paintball", "ATV rides", "Kayaking", "Swimming", "Camping"],
+    images: {
+      image1: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
+      image2: "https://images.unsplash.com/photo-1621277224630-81d9af65e40f?w=800&h=600&fit=crop",
+      image3: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop"
+    },
+    rating: 4.2,
+    highlights: ["Island location", "Adventure activities", "Beach access", "Camping facilities"],
+    accommodation: "Chalets and camping available",
+    bestTimeToVisit: "Weekends for full activities",
+    travelTime: "2 hours from Lagos Island + boat ride"
+  }
+];
+
+// Helper functions for unpopular centers
+const getUnpopularCentersByCategory = (category) => {
+  return unpopularLagosTouristCenters.filter(center => center.category === category);
+};
+
+const getUnpopularCenterById = (id) => {
+  return unpopularLagosTouristCenters.find(center => center.id === id);
+};
+
+const getUnpopularBeaches = () => {
+  return unpopularLagosTouristCenters.filter(center => 
+    center.category === "Beach" || center.category === "Beach & Recreation"
+  );
+};
+
+const getHiddenGems = (minRating = 4.0) => {
+  return unpopularLagosTouristCenters.filter(center => center.rating >= minRating)
+    .sort((a, b) => b.rating - a.rating);
+};
+
+const searchUnpopularCenters = (searchTerm) => {
+  const term = searchTerm.toLowerCase();
+  return unpopularLagosTouristCenters.filter(center => 
+    center.name.toLowerCase().includes(term) ||
+    center.description.toLowerCase().includes(term) ||
+    center.location.toLowerCase().includes(term)
+  );
+};
+
+// Combine both arrays
+const allLagosTouristCenters = [...lagosTouristCenters, ...unpopularLagosTouristCenters];
+
+// Export everything
+export {
+  lagosTouristCenters,
+  unpopularLagosTouristCenters,
+  allLagosTouristCenters,
+  getTouristCentersByCategory,
+  getTouristCenterById,
+  getBeaches,
+  getNatureParks,
+  getTopRatedCenters,
+  searchTouristCenters,
+  getUnpopularCentersByCategory,
+  getUnpopularCenterById,
+  getUnpopularBeaches,
+  getHiddenGems,
+  searchUnpopularCenters
+};
+
+// Example usage:
+console.log("Popular Tourist Centers:", lagosTouristCenters.length);
+console.log("Hidden Gems:", unpopularLagosTouristCenters.length);
+console.log("All Centers Combined:", allLagosTouristCenters.length);
+console.log("Unpopular Beaches:", getUnpopularBeaches());
+console.log("Hidden Gems (4.0+):", getHiddenGems());

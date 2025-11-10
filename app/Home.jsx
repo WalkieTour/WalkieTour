@@ -5,7 +5,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
-import { lagosTouristCenters } from "./details";
+import { lagosTouristCenters, unpopularLagosTouristCenters } from "./details";
 import { useUser } from "./UserContext";
 
 
@@ -59,29 +59,86 @@ const Card = ({ tour, index, isLiked, onToggleLike, }) => {
 };
 
 
+const Card2 = ({ tour, index, isLiked, onToggleLike, }) => {    
+  const {width,height} =Dimensions.get("screen")
+  return (
+    <TouchableOpacity activeOpacity={1} 
+    onPress={() => router.push({
+        pathname: '/CardDetails',
+        params: { 
+      tour: JSON.stringify(tour)
+    }
+      })}
+     >
+    <View style={styles.card}>
+      <View style={{ ...styles.cardOverlay, opacity: 0 }} />
+      <View style={styles.priceTag}>
+        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+          ₦{tour.price}
+        </Text>
+      </View>
+      <Image source={{ uri: tour.images.image1 }} style={styles.cardImage} />
+      <View>
+        <View
+          style={{ flexDirection: "row", justifyContent: "space-between" }}
+        >
+          <View>
+            <Text style={{ fontSize: 17, fontWeight: "bold", marginTop:height*.02 ,marginStart:width*.06}}>
+              {tour.name}
+            </Text>
+          </View>
+        </View>
+        
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginTop: 10,
+          }}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ color: "rgb(12,66,94)", fontSize: 13, textAlign:"center",  marginStart:width*.25, }}>
+                 ⭐: {tour.rating}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    </TouchableOpacity>
+  );
+};
+
+
 export default function Home (){
     const {width,height} =Dimensions.get("screen")
-       const { profileImage } = useUser();
+       const { profileImage, userInfo } = useUser();
 return(
-    <ScrollView>
-        <View style={{height, width, backgroundColor:"rgba(255, 247, 230, 1)"}}>
+    <ScrollView  style={{height, width, backgroundColor:"rgba(255, 247, 230, 1)"}}>
+        <View>
             <View style={{flexDirection:"row"}}>
 
-            <View style={{marginTop:height*.1, marginStart:width*.1,flexDirection:"row"}}>
-              {profileImage && (
-                <Image 
-                    source={{ uri: profileImage }} 
-                    style={{ width: 50, height: 50, borderRadius: 25, marginRight:5 }} 
-                />
-            )}
+            <View style={{marginTop:height*.09, marginStart:width*.1,flexDirection:"row"}}>
 
             <View>
-                <Text style={{fontSize:20,fontWeight:"500"}}>Hi, Arya</Text>
-                <Text style={{marginTop:height*.01}}>Lagos, Nigeria</Text>
+               {/* Display User Name */}
+                             {userInfo.fullName ? (
+                          <Text style={{
+                              fontSize: 20, 
+                              fontWeight: "bold", 
+                              textAlign: "center", maxWidth:width*.5}}>Hi, 
+                              {userInfo.fullName}
+                          </Text>
+                      ) :(
+                          <Text  style={{
+                              fontSize: 20, 
+                              fontWeight: "bold", 
+                              textAlign: "center", 
+                             }}> Hi, User</Text>
+                      )}
                 </View>
 
             </View>
-                   <View style={{marginTop:height*.1, marginLeft:width*.4}}>
+                   <View style={{marginTop:height*.08, marginLeft:"48%"}}>
                     <Text>
               <MaterialIcons name="notifications-none" size={40} color="black"/>
               </Text>
@@ -90,7 +147,7 @@ return(
            
             <View>
                 <TextInput placeholder="Explore Destinations" placeholderTextColor={"grey"}
-                style={{height:height*.05, backgroundColor:"white",padding:20, marginHorizontal:width*.06,marginTop:height*.02,borderRadius:5, borderWidth:1}}></TextInput>
+                style={{height:height*.064, backgroundColor:"white",padding:20, marginHorizontal:width*.06,marginTop:height*.01,borderRadius:5, borderWidth:1}}></TextInput>
             </View>
             <View style={{backgroundColor:"white", height:height*.17, borderRadius:20, marginHorizontal:width*.06,marginTop:height*.04}}>
               
@@ -112,9 +169,9 @@ return(
 
             <View style={{backgroundColor:"white", flexDirection:"row",marginHorizontal:15, marginTop:20, padding:5, borderRadius:10}}>
                     <Text style={{fontSize:20,fontWeight:"bold"}}>Recommended</Text>
-                    <Text style={{marginStart:width*.4, marginTop:height*.002}}>Show all</Text>
+
                 </View>
-                  <ScrollView>
+                
             <View>
              <FlatList
             horizontal
@@ -126,13 +183,30 @@ return(
               <Card 
                 tour={item} 
                 index={index}
-              
+              />
+            )}/>
+            </View>
+
+              <View style={{backgroundColor:"white", flexDirection:"row",marginHorizontal:15, marginTop:20, padding:5, borderRadius:10}}>
+                    <Text style={{fontSize:20,fontWeight:"bold"}}>Hidden Gems</Text>
+                </View>
+            <View>
+            <FlatList 
+             horizontal
+            data={unpopularLagosTouristCenters}
+            contentContainerStyle={{ paddingVertical: 30, paddingLeft: 20 }}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item, index }) => (
+              <Card2 
+                tour={item} 
+                index={index}
               />
             )}
-          />
+            />
             
             </View>
-        </ScrollView>
+        
         </View>
 
       

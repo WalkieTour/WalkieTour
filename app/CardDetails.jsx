@@ -10,7 +10,21 @@ export default function CardDetails (){
      const params = useLocalSearchParams()
        const dispatch = useDispatch()
      const navigation = useNavigation()
-  const tour = JSON.parse(params.tour)
+const tour = params.tour ? JSON.parse(params.tour) : null;
+
+  const handleExploreTour = () => {
+    router.push({
+      pathname: '/TourMap',
+      params: {
+        tour: JSON.stringify({
+          name: tour.name,
+          location: tour.location,
+          latitude: tour.coordinates.lat,
+          longitude: tour.coordinates.lng,
+        })
+      }
+    })
+  }
   const {width,height} = Dimensions.get('screen')
    const savedHotels = useSelector((state) => state.saved.saved || [])
     const isSaved = savedHotels.some(h => h.id === tour.id)
@@ -62,7 +76,15 @@ dispatch(savedPlaces(router.params))
         </Text>
         <Text style={{fontSize:16,color:"gray",marginTop:3}}>Best time to visit: {tour.bestTimeToVisit} </Text>
       
+
+       <TouchableOpacity 
+        onPress={handleExploreTour}
+        style={styles.exploreTourButton}
+      >
+        <Text style={styles.exploreTourText}>Explore Tour</Text>
+      </TouchableOpacity>
       </View>
+      
      </ScrollView>
      
   );
@@ -83,5 +105,21 @@ const styles = StyleSheet.create({
     alignItems:"center",
     marginHorizontal:20,
     justifyContent:"space-between"
+  },
+   exploreTourButton: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(232, 188, 93, 1)',
+    padding: 15,
+    borderRadius: 40,
+    marginHorizontal: 20,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  exploreTourText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 10,
   },
 });

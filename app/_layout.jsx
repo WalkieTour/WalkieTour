@@ -3,7 +3,7 @@ import { HeaderShownContext } from "@react-navigation/elements";
 import Splash from "./Splash"
 import React, { useEffect, useState } from "react";
 import {useFonts} from "expo-font"
-import { UserProvider } from './UserContext';
+import { UserProvider } from './UserContext'
 import store from "./store"
 import {Provider} from 'react-redux'
 
@@ -43,9 +43,11 @@ export default function RootLayout() {
        <Stack.Screen name="Profile" />
        <Stack.Screen name="StackNavigator" />
        <Stack.Screen name="CardDetails" />
+       <Stack.Screen name="MyAccount" />
+       <Stack.Screen name="TourMap" />
 
   </Stack>
   </UserProvider>
   </Provider>
-  );
+  )
 }

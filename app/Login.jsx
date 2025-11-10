@@ -63,7 +63,7 @@ export default function Login(){
                         <View>
                             <Feather  style={{marginStart:width*.05,margin:15}}  name="mail" size={20} color="black" />
                         </View>
-                        <TextInput  onChangeText={text => setEmail(text)} value={email} style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
+                        <TextInput keyboardType="email-address" autoCapitalize="none" onChangeText={text => setEmail(text)} value={email} style={styles.textInput} placeholder="Email Address" placeholderTextColor={"grey"} >
                         </TextInput>        
                     </View>
 

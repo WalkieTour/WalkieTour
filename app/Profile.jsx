@@ -12,7 +12,7 @@ import { useUser } from "./UserContext";
 
 export default function Profile (){
     const [image, setImage] = useState(null)
-      const { profileImage, setProfileImage } = useUser();
+      const { profileImage, setProfileImage, userInfo } = useUser();
      const { width, height } = Dimensions.get("screen");
   const navigation = useNavigation()
   const handleSignOut =() =>{
@@ -60,13 +60,31 @@ export default function Profile (){
                     <Feather style={{marginTop:height*.08}} name="user" size={70} color="#ccc" />
                 </View>
             )}
+
+              {/* Display User Name */}
+               {userInfo.fullName ? (
+            <Text style={{
+                fontSize: 20, 
+                fontWeight: "bold", 
+                textAlign: "center", 
+                 marginTop: height*.02}}>
+                {userInfo.fullName}
+            </Text>
+        ) :(
+            <Text  style={{
+                fontSize: 20, 
+                fontWeight: "bold", 
+                textAlign: "center", 
+                marginTop: height*.12}}>User</Text>
+        )}
+
         </View>
          <TouchableOpacity onPress={pickImage} style={{marginStart:width*.6}}>
                 <Feather name="camera" size={24} color="grey" />
             </TouchableOpacity>
 
         <View style={{marginTop:height*.1, marginHorizontal:width*.03, borderWidth:1, borderColor:"#e5e7eb", borderRadius:10, backgroundColor:"rgba(255, 255, 255, 1)"}}>
-            <Pressable>
+            <Pressable onPress={()=>router.push('./MyAccount')}>
             <Text style={{width:width*.9,fontSize:15, padding:17, borderBottomWidth:1, borderColor:"#e5e7eb", justifyContent:"space-between" }}>My Account</Text>
              </Pressable>
              <Pressable>
