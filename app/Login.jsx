@@ -17,7 +17,7 @@ export default function Login(){
         const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-     const localImage = require('../assets/image/auth-img.png')
+     const localImage = require('../assets/images/auth-img.png')
      const COLORS = { primary: "rgba(232, 188, 93, 1)", secondary:"rgba(240, 205, 122, 1)" };
 
      

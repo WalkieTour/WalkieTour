@@ -12,19 +12,19 @@ const slides = [
     id: "1",
     title: "Explore Without Limit",
     description: "Discover cities at your own pace, no guide needed just your curiosity",
-    image: require("../assets/image/Onboarding1.png"),
+    image: require("../assets/images/Onboarding1.png"),
   },
   {
     id: "2",
     title: "Listen, Learn & Experience",
     description: "Enjoy rich storytelling and history as you walk through each landmark",
-    image: require("../assets/image/Onboarding2.png"),
+    image: require("../assets/images/Onboarding2.png"),
   },
   {
     id: "3",
     title: "Go Offline Stay on Track",
     description: "Download tours and audio ahead and explore freely without internet worries",
-    image: require("../assets/image/Onboarding3.png"),
+    image: require("../assets/images/Onboarding3.png"),
   },
 ];
 

@@ -6,7 +6,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import * as ImagePicker from "expo-image-picker"
 
 export default function Memories (){
-     const localImage = require('../assets/image/Onboarding1.png')
+     const localImage = require('../assets/images/Onboarding1.png')
     const {width, height} = Dimensions.get('screen')
     const { memories, setMemories } = useUser();
 

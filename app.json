@@ -4,7 +4,7 @@
     "slug": "WalkieTour",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/image/WalkieTour-logo.png",
+    "icon": "./assets/images/WalkieTour-logo.png",
     "scheme": "walkietour",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,9 +14,9 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/image/WalkieTour-logo.png",
-        "backgroundImage": "./assets/image/WalkieTour-logo.png",
-        "monochromeImage": "./assets/image/WalkieTour-logo.png"
+        "foregroundImage": "./assets/images/WalkieTour-logo.png",
+        "backgroundImage": "./assets/images/WalkieTour-logo.png",
+        "monochromeImage": "./assets/images/WalkieTour-logo.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -29,14 +29,14 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/image/WalkieTour-logo.png"
+      "favicon": "./assets/images/WalkieTour-logo.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "../assets/image/WalkieTour-logo.png",
+          "image": "../assets/images/WalkieTour-logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
