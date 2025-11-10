@@ -47,16 +47,16 @@ export default function MyAccount(){
         </View>
 
         <View style={{marginHorizontal:width*.07, height:height*.5, marginTop:height*.1}}>
-            <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.03}}>Full Name</Text>
-            <TextInput value={fullName} onChangeText={setFullName} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.03 }} />
+            <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.01}}>Full Name</Text>
+            <TextInput value={fullName} onChangeText={setFullName} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.06 }} />
             
 
-     <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.03}}>Phone Number</Text>
-            <TextInput keyboardType="phone-pad" value={phone} onChangeText={setPhone} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.03 }} />
+     <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.01}}>Phone Number</Text>
+            <TextInput keyboardType="phone-pad" value={phone} onChangeText={setPhone} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.06 }} />
           
 
-             <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.03}}>E-mail</Text>
-            <TextInput keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.03 }} />
+             <Text style={{color:"#ccc", fontSize:18, marginBottom:height*.01}}>E-mail</Text>
+            <TextInput keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} style={{borderBottomWidth:1,borderBottomColor:"black", height:height*.06 }} />
 
         </View>
 

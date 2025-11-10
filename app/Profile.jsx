@@ -107,12 +107,12 @@ const styles= StyleSheet.create ({
         alignItems:"center",
         marginStart:90,
         marginTop:50,
-        borderRadius:"50%"
+        borderRadius:110
 
     },
     image:{
         width:"100%",
         height:"100%",
-        borderRadius:"100%"
+        borderRadius:110
     }
 })
