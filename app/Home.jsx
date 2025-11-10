@@ -159,9 +159,9 @@ return(
                 </View>
 
                 <View style={{flexDirection:"row", justifyContent:"space-between", marginHorizontal:20}}>
-                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/Image/popular1.jpg")}/>
-                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/Image/popular2.jpg")}/>
-                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/Image/popular3.jpg")}/>
+                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/image/popular1.jpg")}/>
+                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/image/popular2.jpg")}/>
+                    <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/image/popular3.jpg")}/>
                 </View>
             </View>
 

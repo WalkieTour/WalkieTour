@@ -13,7 +13,7 @@ export default function Splash (){
          <SafeAreaView style={{justifyContent:"center", flex:1, alignItems:"center",backgroundColor:"white"}}>
            <Image
          
-            source={require("../assets/Image/WalkieTour-logo.png")}></Image>
+            source={require("../assets/image/WalkieTour-logo.png")}></Image>
             
 
     </SafeAreaView>

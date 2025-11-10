@@ -9,7 +9,7 @@ import {auth} from "./firebase";
   import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Register(){
- const localImage = require('../assets/Image/auth-img.png')
+ const localImage = require('../assets/image/auth-img.png')
  const {width,height} = Dimensions.get('screen')
      const [passwordVisible, setPasswordVisible]= useState(false)
  const COLORS = { primary: "rgba(232, 188, 93, 1)", secondary:"rgba(240, 205, 122, 1)" };
