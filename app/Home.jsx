@@ -147,9 +147,9 @@ return(
            
             <View>
                 <TextInput placeholder="Explore Destinations" placeholderTextColor={"grey"}
-                style={{height:height*.064, backgroundColor:"white",padding:20, marginHorizontal:width*.06,marginTop:height*.01,borderRadius:5, borderWidth:1}}></TextInput>
+                style={{height:height*.067, backgroundColor:"white",padding:20, marginHorizontal:width*.06,marginTop:height*.01,borderRadius:5, borderWidth:1}}></TextInput>
             </View>
-            <View style={{backgroundColor:"white", height:height*.17, borderRadius:20, marginHorizontal:width*.06,marginTop:height*.04}}>
+            {/* <View style={{backgroundColor:"white", height:height*.17, borderRadius:20, marginHorizontal:width*.06,marginTop:height*.04}}>
               
                <View style={{flexDirection:"row"}}>
                 <Text style={{margin:10,fontSize:20,fontWeight:"bold"}}>Popular</Text>
@@ -163,7 +163,7 @@ return(
                     <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/images/popular2.jpg")}/>
                     <Image style={{width:100, height:80, borderRadius:20}} source={require("../assets/images/popular3.jpg")}/>
                 </View>
-            </View>
+            </View> */}
 
 
 

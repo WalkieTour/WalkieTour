@@ -103,7 +103,11 @@ export default function TourMap() {
 
   return (
     <View style={styles.container}>
-
+<View style={{backgroundColor:"rgba(126, 242, 195, 1)"}}>
+   <TouchableOpacity  onPress={() => router.back()} style={styles.backButton}>
+          <Ionicons name="chevron-back" size={30} color="black" />
+        </TouchableOpacity>
+</View>
       {/* Map */}
       {userLocation && (
         <MapView
@@ -119,9 +123,6 @@ export default function TourMap() {
           showsUserLocation={true}
           showsMyLocationButton={true}
         >
-           <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Ionicons name="chevron-back" size={30} color="black" />
-        </TouchableOpacity>
           {/* User Location Marker */}
           <Marker
             coordinate={userLocation}

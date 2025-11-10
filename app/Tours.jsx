@@ -47,7 +47,7 @@ return(
         {profileImage && (
                             <Image 
                                 source={{ uri: profileImage }} 
-                                style={{ width: 50, height: 50, borderRadius: 25, marginStart:width*.4, marginTop:height*.05 }} 
+                                style={{ width: 50, height: 50, borderRadius: 25, marginStart:width*.4, marginTop:height*.05,  }} 
                             />
                         )}
          <FlatList

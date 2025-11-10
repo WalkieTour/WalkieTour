@@ -2,6 +2,7 @@ import React from "react";
 import {StyleSheet,Dimensions,FlatList,View,Image,Text,TouchableOpacity, ImageBackground,} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -47,7 +48,7 @@ const Onboarding = ({ navigation }) => {
   const Slide = ({item}) => {
     return (
           <ImageBackground  style={{ height, width,}} source={item.image}>
-            <View style={{marginTop:height*.7, marginStart:width*.05, marginBottom:height*.05}}>
+            <View style={{marginTop:height*.6, marginStart:width*.05, marginBottom:15}}>
             <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.description}>{item.description}</Text>
           </View>
@@ -80,7 +81,9 @@ const Onboarding = ({ navigation }) => {
             <View style={{flexDirection:"row"}}>
             <View style={{width:15}}></View>
              <TouchableOpacity onPress={goNextSlide} style={[styles.btn,]}>
-                <Text style={{color:"white", fontWeight:"bold", fontSize:24,}}>→</Text>
+                <Text style={{color:"white", fontWeight:"bold", fontSize:24,}}>
+                  <Ionicons name="arrow-forward" size={24} color="white" />
+                </Text>
             </TouchableOpacity>
         </View>
           }
@@ -158,7 +161,6 @@ const styles = StyleSheet.create({
     backgroundColor:"grey",
     marginHorizontal:3,
     borderRadius:2,
-    // marginTop:height*.9,
 
   },
  btn :{
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
   backgroundColor:COLORS.primary,
   justifyContent:"center",
   alignItems:"center",
-  marginStart:width*.45,
+  marginStart:width*.4,
 //    marginTop:height*.87,
  
   
