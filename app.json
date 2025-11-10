@@ -20,11 +20,12 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-       "config": {
+      "config": {
         "googleMaps": {
           "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
         }
-      }
+      },
+      "package": "com.chidimma3.WalkieTour"
     },
     "web": {
       "output": "static",
@@ -49,6 +50,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "99d3b287-481c-447c-88bb-35b592f29ba3"
+      }
+    },
+    "owner": "chidimma3"
   }
 }
