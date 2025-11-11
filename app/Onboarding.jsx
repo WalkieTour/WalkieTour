@@ -125,7 +125,7 @@ const Onboarding = ({ navigation }) => {
       ref={ref}
       onMomentumScrollEnd={updateCurrentSlideIndex}
         data={slides}
-        contentContainerStyle={{ height: height * 0.75 }}
+        // contentContainerStyle={{ height: height * 0.75 }}
         showsHorizontalScrollIndicator={false}
         horizontal
         renderItem={({ item }) => <Slide item={item} />}
